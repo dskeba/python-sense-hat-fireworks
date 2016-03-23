@@ -20,7 +20,7 @@ class Firework():
 			self.pos[1] = self.pos[1] + self.vert_speed
 		else:
 			if not self.explode:
-				self.burst = Burst(self.pos, self.color)
+				self.burst = Burst(self.pos[:], self.color[:])
 				self.explode = True
 			self.burst.animate()
 		
@@ -43,7 +43,7 @@ class Burst():
 		
 	def create_particles(self):
 		for i in range(0, self.particle_count):
-			self.particle.append(Particle(self.pos, self.color))
+			self.particle.append(Particle(self.pos[:], self.color[:]))
 		
 	def animate(self):
 		for i in range(0, self.particle_count):
@@ -77,5 +77,4 @@ while True:
 	sense.clear()
 	fw.animate()
 	fw.render(sense)
-
 	time.sleep(0.5)
